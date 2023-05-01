@@ -29,16 +29,29 @@ public class TodolistRepositoryImplTest {
     }
 
     @Test
-    void testRemove(){
+    void testRemove() {
         System.out.println(todoListRepository.remove(1));
         System.out.println(todoListRepository.remove(2));
         System.out.println(todoListRepository.remove(3));
         System.out.println(todoListRepository.remove(4));
     }
 
+    @Test
+    void testGetAll() {
+        todoListRepository.add(new TodoList("Robi"));
+        todoListRepository.add(new TodoList("Dream"));
+        todoListRepository.add(new TodoList("Laruku"));
+
+        TodoList[] todolists = todoListRepository.getAll();
+
+        for (TodoList todoList : todolists) {
+            System.out.println(todoList.getId() + " : " + todoList.getTodo());
+        }
+    }
+
     @AfterEach
-    void tearDown(){
+    void tearDown() {
         dataSource.close();
     }
-    
+
 }
